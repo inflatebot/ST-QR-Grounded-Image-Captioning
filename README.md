@@ -22,7 +22,7 @@ Usage:
 Known issues and limitations:
 
 - I am unaware of any way to attach the caption to the image directly in STscript, without also sending a duplicate image. So rather than do it the normal way, GIC simply inserts the caption as a system message at depth 0.
-- The "verify caption" dialogue had to be recreated with a popup, but I have no easy way to send the caption back or redo it for the moment.
+- The "verify caption" dialogue had to be recreated with a popup, but I have no easy way to send the caption back or redo it for the moment ("OK" and "Cancel" both do the same thing; there's no Whiptail-like flow control with them.)
 - (The above two points could be ameliorated by simply deleting the message and effectively replacing it with the captioned one, but that feels like it would break pretty easily, and that is not fail-safe behavior...)
 - Compiling history can take a little bit.
 - Currently, the QR does not take context limits into account. The only ways I could find to do this kept breaking on me. For some reason I insisted on having the entries be a list rather than a flat string, so /trimtokens doesn't work. I'll see if just having them be a flat string is as bad as my brain was certain it was at the time.
