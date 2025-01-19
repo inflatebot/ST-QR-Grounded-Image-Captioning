@@ -8,9 +8,22 @@ GIC collects the chat history, character, and persona information, and builds a 
 
 To simply use GIC as a manual Quick Reply, you don't need any extensions, but if you want to automatically caption images as they're sent, then you'll need [SillyTavern-GetContext](https://github.com/LenAnderson/SillyTavern-GetContext).
 
-Known limitations:
+Usage:
+- Optional: Install GetContext.
+- Download "Grounded-Image-Captioning.json"
+- In the Extensions Menu, open the Quick Reply section, and under Edit Quick Replies, click "Import quick reply set". (It's the one that has an arrow pointing into a piece of paper.)
+- Under Global Quick Reply Sets, click the plus icon.
+- In the dropdown, select "Grounded-Image-Captioning" and enable "Buttons".
+- Make sure a Multimodal source is configured under "Image Captioning."
+- Also under "Image Captioning", **disable** "Automatically caption images", as GIC overrides the default caption behavior.
+- Chat with a bot a little bit to get some context going.
+- Send an image! If GetContext is installed, GIC will pick up on it, and automatically caption images from any message when they're sent, regardless of who sends them. If GIC is not installed, then click the "Grounded Caption" button whenever you send an image. GIC will disable automatic captioning. If you later install GetContext, you'll have to manually re-enable the "execute on user/AI message" boxes in the Quick Reply menu.
+
+Known issues and limitations:
 
 - I am unaware of any way to attach the caption to the image directly in STscript, without also sending a duplicate image. So rather than do it the normal way, GIC simply inserts the caption as a system message at depth 0.
 - The "verify caption" dialogue had to be recreated with a popup, but I have no easy way to send the caption back or redo it for the moment.
 - (The above two points could be ameliorated by simply deleting the message and effectively replacing it with the captioned one, but that feels like it would break pretty easily, and that is not fail-safe behavior...)
-- Generating history takes a little bit.
+- Compiling history can take a little bit.
+- Currently, the QR does not take context limits into account. The only ways I could find to do this kept breaking on me. For some reason I insisted on having the entries be a list rather than a flat string, so /trimtokens doesn't work. I'll see if just having them be a flat string is as bad as my brain was certain it was at the time.
+- Message Template is currently ignored, and the caption sent plainly.
